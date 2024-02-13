@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <title>Table</title>
+</head>
+<style>
+    :root {
+        --off: rgb(44, 43, 43);
+        --off-shadow: #cadfef;
+        --background: #35424e;
+        --title:#ADFCF9;
+        --btn-color:#979797;
+        --btn-active:#5c5c5c;
+        --btn-border:#fefedf;
+    }
+
+
+    html,body{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background-color: var(--background);
+    }
+    .main-body{
+        display: flex;
+        height: 100vh;
+        background-color: var(--background);
+        flex-direction: column;
+        /* justify-content: center; */
+        /* align-items: center; */
+    }
+
+    .title{
+        display: flex;
+        background-color: var(--title);
+        height: 10vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inp-div{
+        display: flex;
+        height: 60px;
+        padding: 0px;
+        width: 95%;
+        gap: 10px;
+        align-items: center;
+
+    }
+
+    .inp{
+        border-radius: 10px;
+        border-color: #040404;
+        border-style: solid;
+        width: 70%;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .label{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+        color: aliceblue;
+        font-size: 18px;
+        /* position: relative; */
+        margin: 0;
+    }
+
+    .inp-divs{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .save-btn{
+        width: 70%;
+        height: 40px;
+        font-size: 25px;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 3px;
+        border-color: #35424e;
+    }
+
+    .save-btn:active{
+        border-color: #212930;
+        background-color: #b9b9b9;
+    }
+    
+    .auto-text{
+        display: flex;
+        width: 90%;
+        height: 40px;
+        color: aliceblue;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .auto-grids{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .data{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+    }
+    .close{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        /* height: 20px; */
+        font-size: 30px;
+        background: none;
+        border-style: none;
+    }
+    .close:active{
+        color: rgb(182, 1, 1);
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        width: 300px;
+        margin: 100px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .modal-input-indi{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    .modal-input {
+        width: 80%;
+        height: 30px;
+    }
+
+    .modal-button {
+        background-color: #0074d9;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 15px;
+    }
+    .modal-head{
+        display: flex;
+        gap:10px;
+        padding-left: 40px;
+        height: 30px;
+    }
+
+    .swt-btn{
+        display: flex;
+        gap:18px;
+        height: 30px;
+        align-items: center;
+    }
+
+    @media(min-width:700px){
+        .btn,.btn-active{
+            width: 90%;
+            height: 90%;
+            border-radius: 20px;
+            font-size: 80px;
+        }
+    }
+</style>
+<body>
+    <div class="main-body">
+        <div class="title">
+            <h1>DEVU</h1>
+        </div>
+        <h1 style="color: aliceblue;">Timer Values:</h1>
+        <div class="inp-divs">
+            <div class="inp-div">
+                <p class="label" style="width: 20%;">SWT1 :</p>
+                <input class="inp" type="text" id="inp1">
+            </div>
+        </div>
+        <div class="inp-divs">
+            <div class="inp-div">
+                <p class="label" style="width: 20%;">SWT2 :</p>
+                <input class="inp" type="text" id="inp2">
+            </div>
+        </div>
+        <div class="inp-divs">
+            <div class="inp-div">
+                <p class="label" style="width: 20%;">SWT3 :</p>
+                <input class="inp" type="text" id="inp3">
+            </div>
+        </div>
+        <div class="inp-divs">
+            <div class="inp-div">
+                <p class="label" style="width: 20%;">SWT4 :</p>
+                <input class="inp" type="text" id="inp4">
+            </div>
+        </div>
+        <div class="inp-divs">
+            <div class="inp-div">
+                <p class="label" style="width: 20%;">SWT5 :</p>
+                <input class="inp" type="text" id="inp5">
+            </div>
+        </div>
+        <div class="inp-divs" style="padding-top: 10px;">
+            <button class="save-btn">SAVE</button>
+        </div>
+        <h1 style="color:aliceblue">Automations: </h1>
+        <div class="auto-grids" id="container"></div>
+        <div class="inp-divs">
+            <button class="save-btn" style="width:40%; font-size: 20px;" onclick="openModal()">ADD</button>
+            <button class="save-btn" style="width:40%; font-size: 20px;">SAVE</button>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-input-indi">    
+                    <h2>Hrs:</h2>
+                    <input type="text" class="modal-input" id="inputField" placeholder="Enter Hrs (0-23)">
+                </div>
+                <div class="modal-input-indi">    
+                    <h2>Mins:</h2>
+                    <input type="text" class="modal-input" id="inputField" placeholder="Enter Mins (0-59)">
+                </div>
+                <div class="status-select">
+                    <div class="modal-head">
+                        <h4>OFF</h4>
+                        <h4>ON</h4>
+                        <h4>TIMER</h4>
+                    </div>
+                    <div class="swt-btn">
+                        <h5>SW1</h5>
+                        <input type="radio">
+                        <input type="radio">
+                        <input type="radio">
+                    </div>
+                    <div class="swt-btn">
+                        <h5>SW2</h5>
+                        <input type="radio">
+                        <input type="radio">
+                        <input type="radio">
+                    </div>
+                    <div class="swt-btn">
+                        <h5>SW3</h5>
+                        <input type="radio">
+                        <input type="radio">
+                        <input type="radio">
+                    </div>
+                    <div class="swt-btn">
+                        <h5>SW4</h5>
+                        <input type="radio">
+                        <input type="radio">
+                        <input type="radio">
+                    </div>
+                    <div class="swt-btn">
+                        <h5>SW5</h5>
+                        <input type="radio">
+                        <input type="radio">
+                        <input type="radio">
+                    </div>
+                </div>
+                <button class="modal-button" onclick="saveData()">Save</button>
+                <button class="modal-button" style="background-color: rgb(255, 71, 71) ;" onclick="cancelData()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<!-- <script src="./logic.js"></script> -->
+<script>
+    function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+    const container = document.getElementById("container");
+
+    const numberOfDivs = 5;
+
+    for (let i = 1; i <= numberOfDivs; i++) {
+        const newDiv = document.createElement("div");
+        newDiv.className = "auto-text";
+        
+        const h3 = document.createElement("h3");
+        h3.className = "data";
+        h3.textContent = `${i}. 12:00 -- 0,0,0,0,0`;
+
+        const button = document.createElement("button");
+        button.className = "close";
+        const ionIcon = document.createElement("ion-icon");
+        ionIcon.setAttribute("name", "close-circle");
+        button.appendChild(ionIcon);
+
+        newDiv.appendChild(h3);
+        newDiv.appendChild(button);
+
+        container.appendChild(newDiv);
+    }
+
+    const inp1=document.getElementById("inp1");
+    const inp2=document.getElementById("inp2");
+    const inp3=document.getElementById("inp3");
+    const inp4=document.getElementById("inp4");
+    const inp5=document.getElementById("inp5");
+
+    function updateInitial(){
+        fetch('http://192.168.0.103/getsleep')
+        .then(response => response.json())
+        .then(data => {
+            displayData(data);
+        })
+        
+    }
+
+    function displayData(data){
+        console.log(data);
+    }
+
+    updateInitial();
+</script>
+
+</html>

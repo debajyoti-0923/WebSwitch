@@ -1,0 +1,117 @@
+:root {
+    --off: rgb(44, 43, 43);
+    --off-shadow: #cadfef;
+    --background: #35424e;
+    --title:#ADFCF9;
+    --btn-color:#979797;
+    --btn-active:#5c5c5c;
+    --btn-border:#fefedf;
+}
+
+
+html,body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.main-body{
+    display: flex;
+    background-color: var(--background);
+    flex-direction: column;
+}
+
+.title{
+    display: flex;
+    background-color: var(--title);
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-body{
+    display: grid;
+    height: 80vh;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto;
+    gap: 10px;    
+}
+
+.btn-div{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22vh;
+    width: 22vh;
+    font-size: 50px;
+    color:var(--off);
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+    border-radius: 15%;
+    border:5px double var(--off);
+    transition: transform 0.2s;
+}
+
+.btn:active{
+    transform: translateY(3px);
+    background: rgb(179, 179, 179);
+}
+
+.btn-active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22vh;
+    width: 22vh;
+    font-size: 50px;
+    color:var(--btn-border);
+    
+    background: var(--btn-active);
+    border-radius: 15%;
+    border:5px double var(--btn-border);
+    box-shadow: 0px 0px 30px var(--btn-border),
+    0px 0px 30px #121212 inset;
+    transition: transform 0.2s;
+}
+
+.btn-active:active{
+    transform: translateY(3px);
+    background-color: rgb(82, 82, 82);
+}
+
+.timer{
+    position: absolute;
+    font-size: 35px;
+    background: transparent;
+    border: none;
+    color:#6f6f6f;
+    z-index: 100;
+    top:12%;
+    right:5%;
+}
+
+.timer-active{
+    position: absolute;
+    font-size: 35px;
+    background: transparent;
+    border: none;
+    color:var(--btn-border);
+    z-index: 100;
+    top:12%;
+    right:5%;
+}
+
+
+@media(min-width:700px){
+    .btn,.btn-active{
+        width: 90%;
+        height: 90%;
+        border-radius: 20px;
+        font-size: 80px;
+    }
+}

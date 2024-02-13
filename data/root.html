@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <title>Table</title>
+</head>
+<style>
+    :root {
+        --off: rgb(44, 43, 43);
+        --off-shadow: #cadfef;
+        --background: #35424e;
+        --title:#ADFCF9;
+        --btn-color:#979797;
+        --btn-active:#5c5c5c;
+        --btn-border:#fefedf;
+    }
+
+
+    html,body{
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    .main-body{
+        display: flex;
+        background-color: var(--background);
+        flex-direction: column;
+    }
+
+    .title{
+        display: flex;
+        background-color: var(--title);
+        height: 10vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .grid-body{
+        display: grid;
+        height: 80vh;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: auto;
+        gap: 10px;    
+    }
+
+    .btn-div{
+        position:relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 22vh;
+        width: 22vh;
+        font-size: 50px;
+        color:var(--off);
+        background: linear-gradient(145deg, #cacaca, #f0f0f0);
+        border-radius: 15%;
+        border:5px double var(--off);
+        transition: transform 0.2s;
+    }
+
+    .btn:active{
+        transform: translateY(3px);
+        background: rgb(179, 179, 179);
+    }
+
+    .btn-active{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 22vh;
+        width: 22vh;
+        font-size: 50px;
+        color:var(--btn-border);
+        
+        background: var(--btn-active);
+        border-radius: 15%;
+        border:5px double var(--btn-border);
+        box-shadow: 0px 0px 30px var(--btn-border),
+        0px 0px 30px #121212 inset;
+        transition: transform 0.2s;
+    }
+
+    .btn-active:active{
+        transform: translateY(3px);
+        background-color: rgb(82, 82, 82);
+    }
+
+    .timer{
+        position: absolute;
+        font-size: 35px;
+        background: transparent;
+        border: none;
+        color:#6f6f6f;
+        z-index: 100;
+        top:12%;
+        right:5%;
+    }
+
+    .timer-active{
+        position: absolute;
+        font-size: 35px;
+        background: transparent;
+        border: none;
+        color:var(--btn-border);
+        z-index: 100;
+        top:12%;
+        right:5%;
+    }
+
+
+    @media(min-width:700px){
+        .btn,.btn-active{
+            width: 90%;
+            height: 90%;
+            border-radius: 20px;
+            font-size: 80px;
+        }
+    }
+</style>
+<body>
+    <div class="main-body">
+        <div class="title">
+            <h1>DEVU</h1>
+        </div>
+        <div class="grid-body">
+            <div class="btn-div">
+                <button class="btn" id="btn1"><ion-icon name="laptop"></ion-icon></button>
+                <button class="timer" id="timer1"><ion-icon name="timer"></ion-icon></button>
+            </div>
+            <div class="btn-div">
+                <button class="btn" id="btn2"><ion-icon name="desktop"></ion-icon></button>
+                <button class="timer" id="timer2"><ion-icon name="timer"></ion-icon></button>
+            </div>
+            <div class="btn-div">
+                <button class="btn" id="btn3"><ion-icon name="phone-portrait-outline"></ion-icon></button>
+                <button class="timer" id="timer3"><ion-icon name="timer"></ion-icon></button>
+            </div>
+            <div class="btn-div">
+                <button class="btn-active" id="btn4"><ion-icon name="watch"></ion-icon></button>
+                <button class="timer" id="timer4"><ion-icon name="timer"></ion-icon></button>
+            </div>
+            <div class="btn-div">
+                <button class="btn" id="btn5"><ion-icon name="headset"></ion-icon></button>
+                <button class="timer" id="timer5"><ion-icon name="timer"></ion-icon></button>
+            </div>
+            <div class="btn-div">
+                <button class="btn" id="btn6"><ion-icon name="cog"></ion-icon></button>
+            </div>
+        </div>
+        <div class="title" style="height: 3vh; background-color: #35424e;"></div>
+    </div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<!-- <script src="./logic.js"></script> -->
+<script>
+    let status=[0,0,0,0,0];
+
+    function update_status(){
+        for(var i=0;i<5;i++){
+            var btn=document.getElementById('btn'+(i+1));
+            var timer=document.getElementById('timer'+(i+1));
+
+            if(status[i]===0){
+                btn.classList.add('btn');
+                btn.classList.remove('btn-active');
+            }else{
+                btn.classList.add('btn-active');
+                btn.classList.remove('btn');
+            }
+
+            if(status[i]==2){
+                timer.classList.add('timer-active');
+                timer.classList.remove('timer');
+            }else{
+                timer.classList.add('timer');
+                timer.classList.remove('timer-active');
+            }
+
+        }
+    }
+
+    function toggle(id){
+        status[id]=!status[id];
+        update_status();
+        data={'P1':status[0],'P2':status[1],'P3':status[2],'P4':status[3],'P5':status[4]};
+        ws.send(JSON.stringify(data));
+    }
+
+    let btn1=document.getElementById('btn1');
+    let btn2=document.getElementById('btn2');
+    let btn3=document.getElementById('btn3');
+    let btn4=document.getElementById('btn4');
+    let btn5=document.getElementById('btn5');
+    let btn6=document.getElementById('btn6');
+
+    let timer1=document.getElementById('timer1');
+    let timer2=document.getElementById('timer2');
+    let timer3=document.getElementById('timer3');
+    let timer4=document.getElementById('timer4');
+    let timer5=document.getElementById('timer5');
+    let timer6=document.getElementById('timer6');
+
+    ws=new WebSocket(window.location.href.replace('http://','ws://').slice(0,-1)+':81');
+    ws.onopen=function(){ws.send("{'P1':1,'P2':0,'P3':1,'P4':0,'P5':1}")};
+
+
+
+    // timer1.addEventListener('click',()=>{
+    //     status[0]=2;
+    //     update_status();
+    //     alert('remaining time');
+    // })
+
+    // btn1.addEventListener('click',()=>{
+    //     status[0]=0;
+    //     update_status();
+    // })
+    btn1.addEventListener('click',toggle(0));
+    btn2.addEventListener('click',toggle(1));
+    btn3.addEventListener('click',toggle(2));
+    btn4.addEventListener('click',toggle(3));
+    btn5.addEventListener('click',toggle(4));
+
+    update_status()
+</script>
+</html>
